@@ -11,10 +11,10 @@
 <body class="bg-white text-ink font-serif antialiased">
 
 <!-- VAKANTIEBANNER: verschijnt automatisch op basis van de Google Sheet (zie script onderaan) -->
-<div id="vakantie" hidden class="bg-roze text-bordeaux-dark">
-  <div class="mx-auto flex max-w-site items-center gap-4 px-5 py-3 md:px-10">
-    <img src="img/visser-haak.svg" alt="" class="h-14 w-auto shrink-0">
-    <p id="vakantie-tekst" class="text-[17px] leading-snug md:text-lg"></p>
+<div id="vakantie" hidden class="sticky top-0 z-50 bg-bordeaux-dark text-white">
+  <div class="mx-auto flex max-w-site items-center justify-center gap-4 px-5 py-3 md:px-10">
+    <img src="img/visser-haakWit.svg" alt="" class="h-14 w-auto shrink-0">
+    <p id="vakantie-tekst" class="text-[17px] font-bold leading-snug md:text-lg"></p>
   </div>
 </div>
 
@@ -160,9 +160,10 @@
    INSTELLINGEN
    VAKANTIE_SHEET: link naar de Google Sheet, gepubliceerd als CSV
    (Bestand > Delen > Publiceren op internet > CSV).
-   Kolommen: Van | Tot en met | Bericht (Bericht mag leeg blijven)
+   Antwoordsheet van een Google Formulier, landinstelling Nederland (datums als 5-11-2026).
+   Kolommen worden op naam gezocht: Eerste dag gesloten (of Van) | Laatste dag gesloten (of Tot) | Bericht (optioneel)
    ============================================================ */
-const VAKANTIE_SHEET = '';
+const VAKANTIE_SHEET = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTb7HmwCkLWBDFA1t0YQ_ldyXNPVya7B-6wJbXyEUWg8vZeINfMFxD37vBAJOEY-svs1Itb73kv_1RV/pub?gid=1231073637&single=true&output=csv';
 const BANNER_DAGEN_VOORAF = 14; // banner verschijnt zoveel dagen voor de vakantie
 const OPEN_DAGEN = [0, 1, 2, 5, 6]; // zo, ma, di, vr, za (wo en do gesloten)
 
@@ -180,10 +181,14 @@ function leesDatum(s) {
   return null;
 }
 function leesCsv(tekst) {
-  return tekst.trim().split(/\r?\n/).slice(1).map(r => {
-    const kol = (r.match(/("([^"]|"")*"|[^,]*)(,|$)/g) || []).map(c => c.replace(/,$/, '').replace(/^"|"$/g, '').replace(/""/g, '"'));
-    return { van: leesDatum(kol[0]), tot: leesDatum(kol[1]), bericht: (kol[2] || '').trim() };
-  }).filter(p => p.van && p.tot);
+  const rijen = tekst.trim().split(/\r?\n/).map(r =>
+    (r.match(/("([^"]|"")*"|[^,]*)(,|$)/g) || []).map(c => c.replace(/,$/, '').replace(/^"|"$/g, '').replace(/""/g, '"').trim()));
+  // kolommen op naam zoeken, zodat ook een Google Form (met Tijdstempel vooraan) werkt
+  const kop = rijen[0].map(k => k.toLowerCase());
+  const kolom = (namen, standaard) => { const i = kop.findIndex(k => namen.some(n => k.startsWith(n))); return i < 0 ? standaard : i; };
+  const iVan = kolom(['eerste', 'van'], 0), iTot = kolom(['laatste', 'tot'], 1), iBericht = kolom(['bericht'], -1); // geen berichtkolom: standaardtekst
+  return rijen.slice(1).map(kol => ({ van: leesDatum(kol[iVan]), tot: leesDatum(kol[iTot]), bericht: kol[iBericht] || '' }))
+    .filter(p => p.van && p.tot);
 }
 function eersteOpenDag(na) {
   const d = new Date(na); d.setDate(d.getDate() + 1);

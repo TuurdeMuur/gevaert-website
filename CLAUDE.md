@@ -43,7 +43,8 @@ Files in use:
 - `woordmerk-enkel-wit.svg`: wordmark "Gevaert" only, white (recolored from Rood_Woordmerk - Enkel). Hero.
 - `woordmerk-totaal-wit.svg`: wordmark + "Sinds 1931 / Uw warme bakker", white. Footer.
 - `visser-wit.svg`: original Wit_Visser.svg (the baker with peel and basket). Section 4, on bordeaux.
-- `visser-haak.svg`: Rood_Visser - haak recolored #7A232C (Visser fishing). Vacation banner, on pink.
+- `visser-haakWit.svg`: white Visser fishing (white file, do not recolor). Vacation banner.
+- `visser-haak.svg`: Rood_Visser - haak recolored #7A232C. No longer used.
 - `icoon.svg`: the G icon. Favicon.
 The mascot is called "de Visser".
 
@@ -66,9 +67,11 @@ Design version 1 was preferred over a later version with a nav bar, primary buil
 
 ## Vacation banner
 The owners (Jan and Severine) are not technical and must be able to set a holiday notice without Tuur and without a CMS.
-- Source: a Google Sheet published as CSV (File > Share > Publish to web > CSV). Columns: `Van | Tot en met | Bericht` (Bericht optional). Dates as d/m/yyyy or yyyy-mm-dd. Template: `vakantie-sjabloon.csv`.
-- Paste the published CSV link in `VAKANTIE_SHEET` at the top of the script in `index.html` (currently empty, so no banner).
-- Behaviour: banner appears `BANNER_DAGEN_VOORAF` (14) days before the holiday ("Let op: van ... tot en met ... zijn we met vakantie."), during the holiday it says when they reopen (skips Wednesday/Thursday), and disappears automatically afterwards. A filled-in Bericht overrides the default text.
+- Source: the response sheet of a Google Form, published as CSV (File > Share > Publish to web > CSV). The owners fill in the form; each answer becomes a row.
+- Columns: `Tijdstempel | Eerste dag gesloten | Laatste dag gesloten`. There is no question for a custom message, so the default texts in `toonVakantie` are always used (Tuur writes those). `leesCsv` finds columns by name ("eerste"/"van", "laatste"/"tot", optional "bericht"), not by position.
+- The sheet's locale is set to Netherlands, so dates arrive as d-m-yyyy (e.g. 5-11-2026). `leesDatum` also accepts d/m/yyyy and yyyy-mm-dd.
+- `VAKANTIE_SHEET` at the top of the script in `index.html` is filled in with the published CSV link of that sheet.
+- Behaviour: banner appears `BANNER_DAGEN_VOORAF` (14) days before the holiday ("Let op: van ... tot en met ... zijn we met vakantie."), during the holiday it says when they reopen (skips Wednesday/Thursday), and disappears automatically afterwards. A Bericht column, if ever added, would override the default text.
 - Google Business Profile was considered: the Places API only returns special hours for the next 7 days and needs an API key + server, so it is not used for the banner. Possible later: pull regular hours from Google Business Profile if the site moves to a server setup.
 
 ## Photos
@@ -79,6 +82,5 @@ The owners (Jan and Severine) are not technical and must be able to set a holida
 ## Open items
 - Replace Alegreya with Adonis via Adobe Fonts.
 - Responsive images (`srcset`), meta/Open Graph tags + share image, `LocalBusiness` structured data (address, hours, phone), full favicon set.
-- Create the Google Sheet for the owners and fill in `VAKANTIE_SHEET`.
 - Hosting: static (Netlify, Cloudflare Pages, GitHub Pages or the hosting of their domain).
 - The huisstijlgids PDF still has template leftovers: "Business Name: Smederij (JC 'T verzet)" and the primary color labelled "Groen/Blauw".
