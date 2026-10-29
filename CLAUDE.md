@@ -73,7 +73,7 @@ The owners (Jan and Severine) are not technical and must be able to set a holida
 
 ## Photos
 - Originals (152 photos, 2048 px, Z62_8239 to Z62_8410) are on Tuur's drive `/Volumes/Tuur/Gevaert`. Site uses WebP exports at max 1800 px, quality 74.
-- In use: etalage (8361), jan-severine (8320), toonbank (8259), manden (8266), broodjes (8374), kastjes (8304), rekken (8261), zakjes (8386).
+- In use: etalage (8361), jan-severine (8320), toonbank (8259), manden (8266), broodjes (8374), kastjes (8304), rekken (8261), plus koeken, donut, jan, severine, confituur (added by Tuur as JPG, converted to WebP the same way).
 - Do not use photos where customers are recognizable.
 
 ## Open items
