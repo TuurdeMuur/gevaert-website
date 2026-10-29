@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="nl-BE">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bakkerij Gevaert · Uw warme bakker sinds 1931 · Heist-aan-Zee</title>
+<meta name="description" content="Bakkerij Gevaert in de Polderstraat in Heist-aan-Zee. De derde generatie die ambachtelijk bakt, sinds 1931.">
+<link rel="icon" href="img/icoon.svg">
+<link rel="stylesheet" href="css/site.css">
+</head>
+<body class="bg-white text-ink font-serif antialiased">
+
+<!-- VAKANTIEBANNER: verschijnt automatisch op basis van de Google Sheet (zie script onderaan) -->
+<div id="vakantie" hidden class="bg-roze text-bordeaux-dark">
+  <div class="mx-auto flex max-w-site items-center gap-4 px-5 py-3 md:px-10">
+    <img src="img/visser-haak.svg" alt="" class="h-14 w-auto shrink-0">
+    <p id="vakantie-tekst" class="text-[17px] leading-snug md:text-lg"></p>
+  </div>
+</div>
+
+<main id="top">
+
+<!-- 1. HERO -->
+<section class="relative isolate flex min-h-[92svh] items-center justify-center overflow-hidden bg-bordeaux text-white">
+  <img src="img/etalage.webp" alt="De verlichte etalage van bakkerij Gevaert 's avonds in de Polderstraat" class="absolute inset-0 -z-10 h-full w-full object-cover">
+  <div class="absolute inset-0 -z-10 bg-bordeaux/55 mix-blend-multiply"></div>
+  <div class="absolute inset-0 -z-10 bg-gradient-to-b from-bordeaux/60 via-bordeaux/20 to-bordeaux/85"></div>
+
+  <div class="mx-auto flex max-w-site flex-col items-center px-5 py-20 text-center">
+    <h1 class="sr-only">Bakkerij Gevaert, uw warme bakker sinds 1931</h1>
+    <img src="img/woordmerk-enkel-wit.svg" alt="" class="w-[min(86vw,620px)]">
+    <div class="mt-10 flex flex-col items-center gap-3 sm:flex-row">
+      <a href="tel:+3250511268" class="inline-flex items-center gap-2.5 rounded-full bg-white px-7 py-3.5 text-lg text-bordeaux shadow-lg shadow-black/20 transition hover:bg-roze-light">
+        <svg aria-hidden="true" viewBox="0 0 24 24" class="h-5 w-5 fill-current"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1L6.6 10.8Z"/></svg>
+        Bel om te bestellen
+      </a>
+      <a href="#bezoek" class="rounded-full px-7 py-3.5 text-lg text-white ring-1 ring-white/50 transition hover:bg-white/10">Openingsuren</a>
+    </div>
+  </div>
+</section>
+
+<!-- 2. OVER ONS -->
+<section id="over-ons">
+  <div class="mx-auto grid max-w-site items-center gap-12 px-5 py-20 md:grid-cols-12 md:gap-10 md:px-10 md:py-32">
+    <div class="relative md:col-span-6">
+      <img src="img/jan-severine.webp" alt="Jan Gevaert en Severine Allegaert achter de toonbank" class="aspect-[4/3] w-full rounded-2xl object-cover shadow-xl shadow-ink/10">
+      <div class="absolute -bottom-6 -right-3 rotate-[-4deg] rounded-xl bg-beige px-4 py-2 font-hand text-xl text-bordeaux shadow-md md:-right-6">Jan &amp; Severine</div>
+    </div>
+    <div class="md:col-span-5 md:col-start-8">
+      <p class="text-sm uppercase tracking-[0.2em] text-donkerroze">Over ons</p>
+      <h2 class="mt-3 font-hand text-4xl leading-tight text-bordeaux md:text-5xl">Welkom bij<br>Jan en Severine</h2>
+      <div class="mt-6 space-y-4 text-lg leading-relaxed text-ink/85 md:text-xl">
+        <p>De derde generatie die ambachtelijk bakt in de Polderstraat in Heist-aan-Zee.</p>
+        <p>Sinds 1931 staat de familie De Grauwe - Gevaert garant voor ambachtelijk brood en lekkers.</p>
+        <p>Jan Gevaert en zijn vrouw Severine Allegaert namen in 2000 de bakkerij over en staan sindsdien klaar voor de hongerige Heistenaar.</p>
+      </div>
+      <dl class="mt-10 grid grid-cols-3 gap-4 border-t border-bordeaux/15 pt-6 text-bordeaux">
+        <div><dt class="text-sm text-ink/60">Opgericht</dt><dd class="text-3xl">1931</dd></div>
+        <div><dt class="text-sm text-ink/60">Generatie</dt><dd class="text-3xl">3<sup class="text-base">de</sup></dd></div>
+        <div><dt class="text-sm text-ink/60">Jan &amp; Severine</dt><dd class="text-3xl">2000</dd></div>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<!-- 3. VERS. WARM. AMBACHTELIJK. -->
+<section id="assortiment" class="bg-beige-light">
+  <div class="mx-auto max-w-site px-5 pt-20 md:px-10 md:pt-28">
+    <div class="flex flex-col justify-between gap-6 md:flex-row md:items-end">
+      <h2 class="font-hand text-4xl leading-[1.1] text-bordeaux md:text-6xl">Vers.<br>Warm.<br>Ambachtelijk.</h2>
+      <div class="max-w-sm">
+        <p class="text-lg leading-relaxed text-ink/80">Elke ochtend vers uit de oven: van brood en pistolets tot koffiekoeken. Kom proeven in de winkel.</p>
+        <div class="mt-5 flex gap-2">
+          <button type="button" data-scroll="-1" class="grid h-11 w-11 place-items-center rounded-full bg-bordeaux text-white transition hover:bg-donkerroze" aria-label="Vorige foto">
+            <svg aria-hidden="true" viewBox="0 0 24 24" class="h-5 w-5 fill-none stroke-current stroke-2"><path d="m15 18-6-6 6-6"/></svg>
+          </button>
+          <button type="button" data-scroll="1" class="grid h-11 w-11 place-items-center rounded-full bg-bordeaux text-white transition hover:bg-donkerroze" aria-label="Volgende foto">
+            <svg aria-hidden="true" viewBox="0 0 24 24" class="h-5 w-5 fill-none stroke-current stroke-2"><path d="m9 18 6-6-6-6"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="galerij" class="scrollbar-none mt-10 flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-px-5 px-5 pb-20 md:gap-6 md:scroll-px-[max(2.5rem,calc((100vw_-_76rem)/2_+_2.5rem))] md:px-[max(2.5rem,calc((100vw_-_76rem)/2_+_2.5rem))] md:pb-28">
+    <img src="img/toonbank.webp" alt="Pistolets, sandwiches en stokbrood op de toonbank" class="aspect-[4/3] w-[78vw] shrink-0 snap-start rounded-2xl object-cover sm:w-[46vw] lg:w-[30rem]" loading="lazy">
+    <img src="img/manden.webp" alt="Rieten manden vol broodjes" class="aspect-[2/3] w-[58vw] shrink-0 snap-start rounded-2xl object-cover sm:w-[32vw] lg:w-[20rem]" loading="lazy">
+    <img src="img/broodjes.webp" alt="Vers gebakken meergranenbroodjes" class="aspect-[4/3] w-[78vw] shrink-0 snap-start rounded-2xl object-cover sm:w-[46vw] lg:w-[30rem]" loading="lazy">
+    <img src="img/kastjes.webp" alt="Ingepakt brood in de witte kastjes" class="aspect-[2/3] w-[58vw] shrink-0 snap-start rounded-2xl object-cover sm:w-[32vw] lg:w-[20rem]" loading="lazy">
+    <img src="img/rekken.webp" alt="Rekken vol brood achter de toonbank" class="aspect-[4/3] w-[78vw] shrink-0 snap-start rounded-2xl object-cover sm:w-[46vw] lg:w-[30rem]" loading="lazy">
+    <img src="img/zakjes.webp" alt="Broodzakken met de naam van de klant, klaar om mee te nemen" class="aspect-[2/3] w-[58vw] shrink-0 snap-start rounded-2xl object-cover sm:w-[32vw] lg:w-[20rem]" loading="lazy">
+  </div>
+</section>
+
+<!-- 4. BESTELLEN -->
+<!-- Desktop: posities in % van de sectiebreedte, volgens het ontwerp (2000 x 771), zodat de compositie mee schaalt -->
+<section class="relative overflow-hidden bg-bordeaux text-white md:aspect-[2000/771]">
+  <div class="px-5 pt-20 text-center md:absolute md:left-[23.4%] md:top-1/2 md:w-[34%] md:-translate-y-[44%] md:p-0 md:text-left">
+    <h2 class="font-hand text-4xl leading-[1.15] md:text-[clamp(2.25rem,2.8vw,4rem)]">Iets speciaals nodig?<br>bel ons even</h2>
+    <p class="mx-auto mt-6 max-w-md text-lg font-bold leading-snug md:mx-0 md:mt-[1.4vw] md:max-w-[24vw] md:text-[clamp(1.05rem,1.3vw,1.75rem)]">Geef je bestelling telefonisch door, dan ligt ze klaar wanneer je langskomt.</p>
+    <a href="tel:+3250511268" class="mt-8 inline-flex items-center gap-2.5 rounded-full bg-white px-8 py-2.5 text-lg font-bold text-bordeaux transition hover:bg-roze-light md:-ml-[1.1vw] md:mt-[4.3vw] md:px-[2.6vw] md:py-[0.6vw] md:text-[clamp(1.05rem,1.15vw,1.5rem)]">
+      <svg aria-hidden="true" viewBox="0 0 24 24" class="h-[1.1em] w-[1.1em] fill-current"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1L6.6 10.8Z"/></svg>
+      Bestel hier
+    </a>
+  </div>
+  <!-- visser: witruimte bovenaan, benen lopen onderaan uit beeld -->
+  <img src="img/visser-wit.svg" alt="Getekende bakker met broodschep en een korf vol brood" class="mx-auto -mt-2 block w-80 translate-y-[14%] sm:w-96 md:absolute md:left-[46.8%] md:top-0 md:mt-0 md:h-[124%] md:w-auto md:max-w-none md:translate-y-0" loading="lazy">
+</section>
+
+<!-- 5. BEZOEK / OPENINGSUREN -->
+<section id="bezoek">
+  <div class="mx-auto grid max-w-site gap-14 px-5 py-20 md:grid-cols-2 md:px-10 md:py-28">
+    <div>
+      <p class="text-sm uppercase tracking-[0.2em] text-donkerroze">Bezoek ons</p>
+      <h2 class="mt-3 font-hand text-4xl text-bordeaux md:text-5xl">Openingsuren</h2>
+      <table class="mt-8 w-full max-w-md text-lg">
+        <tbody class="divide-y divide-bordeaux/10">
+          <tr data-dag="1"><th scope="row" class="py-3 text-left font-normal">Maandag</th><td class="py-3 text-right tabular-nums">06:30 – 19:00</td></tr>
+          <tr data-dag="2"><th scope="row" class="py-3 text-left font-normal">Dinsdag</th><td class="py-3 text-right tabular-nums">06:30 – 19:00</td></tr>
+          <tr data-dag="3"><th scope="row" class="py-3 text-left font-normal">Woensdag</th><td class="py-3 text-right text-ink/50">Gesloten</td></tr>
+          <tr data-dag="4"><th scope="row" class="py-3 text-left font-normal">Donderdag</th><td class="py-3 text-right text-ink/50">Gesloten</td></tr>
+          <tr data-dag="5"><th scope="row" class="py-3 text-left font-normal">Vrijdag</th><td class="py-3 text-right tabular-nums">06:30 – 19:00</td></tr>
+          <tr data-dag="6"><th scope="row" class="py-3 text-left font-normal">Zaterdag</th><td class="py-3 text-right tabular-nums">06:30 – 19:00</td></tr>
+          <tr data-dag="0"><th scope="row" class="py-3 text-left font-normal">Zondag</th><td class="py-3 text-right tabular-nums">06:30 – 19:00</td></tr>
+        </tbody>
+      </table>
+      <p class="mt-4 text-base text-ink/60">Op feestdagen kunnen de openingsuren afwijken.</p>
+    </div>
+    <div class="flex flex-col justify-between gap-8 rounded-2xl bg-beige-light p-8 md:p-10">
+      <address class="not-italic text-xl leading-relaxed text-ink">
+        <span class="text-bordeaux">Bakkerij Gevaert</span><br>
+        Jan &amp; Severine<br>
+        Polderstraat 55<br>
+        8301 Heist-aan-Zee
+      </address>
+      <div class="flex flex-col gap-3 sm:flex-row">
+        <a href="https://maps.google.com/?q=Polderstraat+55,+8301+Heist-aan-Zee" class="rounded-full bg-bordeaux px-6 py-3 text-center text-lg text-white transition hover:bg-donkerroze">Route plannen</a>
+        <a href="tel:+3250511268" class="rounded-full px-6 py-3 text-center text-lg text-bordeaux ring-1 ring-bordeaux/40 transition hover:bg-bordeaux/5">050 51 12 68</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="bg-bordeaux-dark text-white/80">
+  <div class="mx-auto flex max-w-site flex-col items-start justify-between gap-8 px-5 py-10 md:flex-row md:items-center md:px-10">
+    <img src="img/woordmerk-totaal-wit.svg" alt="Gevaert, sinds 1931, uw warme bakker" class="h-24 w-auto">
+    <p class="text-[13px] uppercase tracking-[0.25em]">Polderstraat 55 · 8301 Heist-aan-Zee · <a href="tel:+3250511268" class="hover:text-white">050 51 12 68</a></p>
+    <p class="text-sm text-white/50">© Bakkerij Gevaert</p>
+  </div>
+</footer>
+
+<script>
+/* ============================================================
+   INSTELLINGEN
+   VAKANTIE_SHEET: link naar de Google Sheet, gepubliceerd als CSV
+   (Bestand > Delen > Publiceren op internet > CSV).
+   Kolommen: Van | Tot en met | Bericht (Bericht mag leeg blijven)
+   ============================================================ */
+const VAKANTIE_SHEET = '';
+const BANNER_DAGEN_VOORAF = 14; // banner verschijnt zoveel dagen voor de vakantie
+const OPEN_DAGEN = [0, 1, 2, 5, 6]; // zo, ma, di, vr, za (wo en do gesloten)
+
+const nu = new Date(new Date().toLocaleString('en-US', { timeZone: 'Europe/Brussels' }));
+const vandaag = new Date(nu.getFullYear(), nu.getMonth(), nu.getDate());
+const dagFmt = d => d.toLocaleDateString('nl-BE', { weekday: 'long', day: 'numeric', month: 'long' });
+const kortFmt = d => d.toLocaleDateString('nl-BE', { day: 'numeric', month: 'long' });
+
+function leesDatum(s) {
+  s = (s || '').trim();
+  let m = s.match(/^(\d{1,2})[\/\-.](\d{1,2})[\/\-.](\d{4})$/); // 3/8/2027
+  if (m) return new Date(+m[3], +m[2] - 1, +m[1]);
+  m = s.match(/^(\d{4})-(\d{1,2})-(\d{1,2})$/);                 // 2027-08-03
+  if (m) return new Date(+m[1], +m[2] - 1, +m[3]);
+  return null;
+}
+function leesCsv(tekst) {
+  return tekst.trim().split(/\r?\n/).slice(1).map(r => {
+    const kol = (r.match(/("([^"]|"")*"|[^,]*)(,|$)/g) || []).map(c => c.replace(/,$/, '').replace(/^"|"$/g, '').replace(/""/g, '"'));
+    return { van: leesDatum(kol[0]), tot: leesDatum(kol[1]), bericht: (kol[2] || '').trim() };
+  }).filter(p => p.van && p.tot);
+}
+function eersteOpenDag(na) {
+  const d = new Date(na); d.setDate(d.getDate() + 1);
+  while (!OPEN_DAGEN.includes(d.getDay())) d.setDate(d.getDate() + 1);
+  return d;
+}
+function toonVakantie(perioden) {
+  const p = perioden
+    .filter(p => vandaag <= p.tot && vandaag >= new Date(p.van.getFullYear(), p.van.getMonth(), p.van.getDate() - BANNER_DAGEN_VOORAF))
+    .sort((a, b) => a.van - b.van)[0];
+  if (!p) return;
+  const bezig = vandaag >= p.van;
+  document.getElementById('vakantie-tekst').textContent = p.bericht || (bezig
+    ? `We zijn even met vakantie. Vanaf ${dagFmt(eersteOpenDag(p.tot))} staan we weer voor je klaar!`
+    : `Let op: van ${kortFmt(p.van)} tot en met ${kortFmt(p.tot)} zijn we met vakantie.`);
+  document.getElementById('vakantie').hidden = false;
+}
+
+document.querySelector(`[data-dag="${nu.getDay()}"]`)?.classList.add('font-medium', 'text-bordeaux');
+
+(async () => {
+  let perioden = [];
+  if (new URLSearchParams(location.search).has('demo')) { // voorbeeld bekijken: index.html?demo
+    const v = new Date(vandaag); v.setDate(v.getDate() - 2);
+    const t = new Date(vandaag); t.setDate(t.getDate() + 9);
+    perioden = [{ van: v, tot: t, bericht: '' }];
+  } else if (VAKANTIE_SHEET) {
+    try { perioden = leesCsv(await (await fetch(VAKANTIE_SHEET, { cache: 'no-store' })).text()); } catch (e) {}
+  }
+  toonVakantie(perioden);
+})();
+
+/* galerij-pijltjes */
+const g = document.getElementById('galerij');
+document.querySelectorAll('[data-scroll]').forEach(b => b.addEventListener('click', () => {
+  g.scrollBy({ left: Number(b.dataset.scroll) * g.clientWidth * 0.6, behavior: 'smooth' });
+}));
+</script>
+</body>
+</html>
