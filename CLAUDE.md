@@ -42,7 +42,7 @@ Original SVGs live on Tuur's Mac in "Huisstijil - Bakkerij Gevaert/SVG". Rules f
 Files in use:
 - `woordmerk-enkel-wit.svg`: wordmark "Gevaert" only, white (recolored from Rood_Woordmerk - Enkel). Hero.
 - `woordmerk-totaal-wit.svg`: wordmark + "Sinds 1931 / Uw warme bakker", white. Footer.
-- `visser-wit.svg`: original Wit_Visser.svg (the baker with peel and basket). Section 4, on bordeaux.
+- `visser-wit.svg`: original Wit_Visser.svg (the baker with peel and basket). Section 4, on bordeaux. Decorative, `alt=""`.
 - `visser-haakWit.svg`: white Visser fishing (white file, do not recolor). Vacation banner.
 - `visser-haak.svg`: Rood_Visser - haak recolored #7A232C. No longer used.
 - `icoon.svg`: the G icon. Favicon.
@@ -60,10 +60,26 @@ The mascot is called "de Visser".
 6. Footer: total wordmark, address line, copyright.
 Design version 1 was preferred over a later version with a nav bar, primary building logo in the hero and product cards. Do not reintroduce those without asking.
 
+## Semantiek
+Rules for the HTML structure of `index.html`. Keep them when changing the page; they do not change the visual design.
+- `<html lang="nl-BE">`. Body order: vacation banner, `<main>`, `<footer>`. No `<nav>` or `<header>` with a menu (deliberately none).
+- Vacation banner is `<aside id="vakantie" aria-label="Vakantiemelding" role="status">`; its Visser icon has `alt=""`. The script unhides it before filling in the text, so screen readers announce it.
+- Exactly one `<h1>`, in the hero: `<h1 class="flex"><span class="sr-only">Bakkerij Gevaert, uw warme bakker sinds 1931</span><img src="img/woordmerk-enkel-wit.svg" alt=""></h1>`. The name is real text (not only an alt), because outline tools report an h1 with only an image as empty. `flex` keeps the image exactly where it was.
+- The hero is a `<div id="welkom">`, not a `<section>`: that way the h1 titles the whole page (otherwise outline tools show "Untitled BODY") and the four sections fall under it.
+- Each content section has exactly one `<h2>`, no skipped levels, no headings for styling. Small labels above headings ("Over ons", "Bezoek ons") are `<p>`.
+- Each `<section>` in `<main>` has an `id` and `aria-labelledby` pointing to its own h2: `over-ons`, `assortiment`, `bestellen`, `bezoek` (h2 id `<id>-titel`). Anchor links such as `#bezoek` rely on these ids.
+- Gallery: scroll container `<div id="galerij" role="region" aria-label="Fotogalerij" tabindex="0">` containing `<ul class="flex w-max ...">` with each photo in `<li class="flex shrink-0">`. Arrow buttons have `aria-label` and `aria-controls="galerij"`. New photos go in a new `<li>`.
+- Opening hours table: `<caption class="sr-only">`, days are `<th scope="row">`, hours in `<time datetime="06:30">`.
+- Address and phone are in `<address>` (the whole address card, and the footer line), with `not-italic`.
+- Decorative images (Visser in section 4, Visser in the banner) have `alt=""`; content photos keep a descriptive alt.
+- Phone links are always `tel:+3250511268`. A link whose text is not the number gets an `aria-label` that says it calls (e.g. "Bestel hier: bel 050 51 12 68"). Icons inside buttons/links have `aria-hidden="true"`.
+- Structured data: `<script type="application/ld+json">` in `<head>` with schema.org `Bakery` (name, address, phone, url, foundingDate, openingHoursSpecification). Hours appear there too, so they now live in three places: table, `OPEN_DAGEN`, JSON-LD. Keep all three in sync. The `url` is a placeholder (TODO): replace with the final domain.
+- Validate with `npx html-validate index.html` (must pass with 0 errors). The few `html-validate-disable-next` comments in the HTML are deliberate and carry their reason; do not remove them without solving the reason.
+
 ## Practical info
 - Phone: 050 51 12 68 (link `tel:+3250511268`)
 - Opening hours: Mon, Tue, Fri, Sat, Sun 06:30 to 19:00. Wednesday and Thursday closed. Note under the table: hours may differ on holidays.
-- Hours appear twice: in the HTML table and in `OPEN_DAGEN` in the script. Keep both in sync.
+- Hours appear three times: in the HTML table, in `OPEN_DAGEN` in the script and in the JSON-LD in `<head>`. Keep all three in sync.
 
 ## Vacation banner
 The owners (Jan and Severine) are not technical and must be able to set a holiday notice without Tuur and without a CMS.
@@ -81,6 +97,7 @@ The owners (Jan and Severine) are not technical and must be able to set a holida
 
 ## Open items
 - Replace Alegreya with Adonis via Adobe Fonts.
-- Responsive images (`srcset`), meta/Open Graph tags + share image, `LocalBusiness` structured data (address, hours, phone), full favicon set.
+- Responsive images (`srcset`), meta/Open Graph tags + share image, full favicon set.
 - Hosting: static (Netlify, Cloudflare Pages, GitHub Pages or the hosting of their domain).
+- Replace the placeholder `url` in the JSON-LD (`https://gevaert-website.vercel.app/`) with the final domain.
 - The huisstijlgids PDF still has template leftovers: "Business Name: Smederij (JC 'T verzet)" and the primary color labelled "Groen/Blauw".
