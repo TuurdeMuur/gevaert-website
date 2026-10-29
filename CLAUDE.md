@@ -50,9 +50,9 @@ The mascot is called "de Visser".
 ## Page structure (approved by Tuur, section by section)
 1. Hero: full-bleed night photo of the shop window (`etalage.webp`) with bordeaux overlay, only the white wordmark (Woordmerk - Enkel), two buttons: "Bel om te bestellen" (tel:) and "Openingsuren" (#bezoek). No navigation bar, no info strip below the hero (both removed on purpose).
 2. Over ons: photo of Jan and Severine left with a "Jan & Severine" label, text right, stats row (1931 / 3de generatie / 2000). Text (approved):
-   - "De derde generatie die ambachtelijk bakt in de Polderstraat in Heist-aan-Zee."
-   - "Sinds 1931 staat de familie De Grauwe - Gevaert garant voor ambachtelijk brood en lekkers."
-   - "Jan Gevaert en zijn vrouw Severine Allegaert namen in 2000 de bakkerij over en staan sindsdien klaar voor de hongerige Heistenaar."
+   - "In de Polderstraat in Heist-aan-Zee wordt al drie generaties lang ambachtelijk gebakken."
+   - "Wat in 1931 begon bij de familie De Grauwe en later werd voortgezet door de familie Gevaert, is vandaag nog altijd een begrip voor vers brood en lekkers."
+   - "Sinds 2000 staan Jan Gevaert en zijn vrouw Severine Allegaert aan het roer, en elke ochtend staan ze klaar voor de hongerige Heistenaar."
 3. "Vers. Warm. Ambachtelijk.": beige-light section, heading left, short text + arrow buttons right, horizontal scroll-snap photo gallery. Keep as is.
 4. "Iets speciaals nodig? / bel ons even" (lowercase b, no period): built to Tuur's design at 2000 x 771. Section uses `aspect-[2000/771]` on desktop and all positions in % / vw so the composition scales. Text block at left 23.4%; bold body text; small white pill button "Bestel hier" with phone icon (tel:). The Visser at left 46.8%, height 124% of the section, top 0: some space above the peel, legs cut off at the bottom by `overflow-hidden`. On mobile: centered text, Visser below, also cut off at the bottom.
 5. Openingsuren table (today's row highlighted in bordeaux via JS) + address card with "Route plannen" (Google Maps link) and phone.
