@@ -78,6 +78,7 @@ Rules for the HTML structure of `index.html`. Keep them when changing the page; 
 
 ## Practical info
 - Phone: 050 51 12 68 (link `tel:+3250511268`)
+- VAT: BTW: BE 0677.387.820. Shown in the footer under the address line (outside `<address>`, same small uppercase style).
 - Opening hours: Mon, Tue, Fri, Sat, Sun 06:30 to 19:00. Wednesday and Thursday closed. Note under the table: hours may differ on holidays.
 - Hours appear three times: in the HTML table, in `OPEN_DAGEN` in the script and in the JSON-LD in `<head>`. Keep all three in sync.
 
