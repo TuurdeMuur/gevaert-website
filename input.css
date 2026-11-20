@@ -5,7 +5,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-.font-hand { font-style: italic; font-weight: 500; font-variation-settings: "BNCE" 50; }
+.font-serif { letter-spacing: 0.1em; } /* tracking 100 (Adobe) voor engria */
+.font-hand { font-style: italic; font-weight: 500; font-variation-settings: "BNCE" 50; letter-spacing: normal; }
 .scrollbar-none { scrollbar-width: none; }
 .scrollbar-none::-webkit-scrollbar { display: none; }
 html { scroll-behavior: smooth; }

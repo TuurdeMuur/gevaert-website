@@ -12,7 +12,7 @@ module.exports = {
         ink: '#3A1517',
       },
       fontFamily: {
-        serif: ['Alegreya', 'Georgia', 'serif'],           // vervang door 'adonis-web' via Adobe Fonts
+        serif: ['engria', 'Alegreya', 'Georgia', 'serif'], // engria via Adobe Fonts; laadt die niet, dan Alegreya (zelf gehost)
         hand: ['"Shantell Sans"', 'cursive'],
       },
       maxWidth: { site: '76rem' },

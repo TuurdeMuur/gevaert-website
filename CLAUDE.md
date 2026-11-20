@@ -32,7 +32,8 @@ Colors (Tailwind tokens):
 
 Fonts:
 - Headings: Shantell Sans Bouncy, medium (500) italic. Class `font-hand` (sets italic, weight 500, BNCE axis 50). Self-hosted in `fonts/`.
-- Secondary / body: Adonis (Adobe Fonts). Not available here, so Alegreya (400/500/700, self-hosted) is a temporary stand-in. To switch: add the Adobe Fonts web kit `<link>` and change `fontFamily.serif` in `tailwind.config.js` to `['adonis-web', ...]`.
+- Secondary / body: Engria via Adobe Fonts, kit `<link rel="stylesheet" href="https://use.typekit.net/wdo3ugy.css">` in `<head>` (weights 400 and 700, regular + italic; no 500, so `font-medium` renders as 400). Class `font-serif` = `['engria', 'Alegreya', 'Georgia', 'serif']` in `tailwind.config.js`. Tracking 100 (`letter-spacing: 0.1em`) on `.font-serif` in `input.css`; `.font-hand` resets it to normal. Elements with their own `tracking-*` class (uppercase labels, footer) keep that value.
+- Fallback: if the Adobe kit does not load, the browser falls back to Alegreya (400/500/700, self-hosted in `fonts/`, declared in `input.css`). Keep Alegreya in the stack and in `fonts/`. Tested by blocking use.typekit.net.
 
 ## Logos and illustrations (`img/`)
 Original SVGs live on Tuur's Mac in "Huisstijil - Bakkerij Gevaert/SVG". Rules from Tuur:
@@ -65,15 +66,30 @@ Rules for the HTML structure of `index.html`. Keep them when changing the page; 
 - `<html lang="nl-BE">`. Body order: vacation banner, `<main>`, `<footer>`. No `<nav>` or `<header>` with a menu (deliberately none).
 - Vacation banner is `<aside id="vakantie" aria-label="Vakantiemelding" role="status">`; its Visser icon has `alt=""`. The script unhides it before filling in the text, so screen readers announce it.
 - Exactly one `<h1>`, in the hero: `<h1 class="flex"><span class="sr-only">Bakkerij Gevaert, uw warme bakker sinds 1931</span><img src="img/woordmerk-enkel-wit.svg" alt=""></h1>`. The name is real text (not only an alt), because outline tools report an h1 with only an image as empty. `flex` keeps the image exactly where it was.
-- The hero is a `<div id="welkom">`, not a `<section>`: that way the h1 titles the whole page (otherwise outline tools show "Untitled BODY") and the four sections fall under it.
-- Each content section has exactly one `<h2>`, no skipped levels, no headings for styling. Small labels above headings ("Over ons", "Bezoek ons") are `<p>`.
-- Each `<section>` in `<main>` has an `id` and `aria-labelledby` pointing to its own h2: `over-ons`, `assortiment`, `bestellen`, `bezoek` (h2 id `<id>-titel`). Anchor links such as `#bezoek` rely on these ids.
+- The hero is a `<div id="welkom">`, not a `<section>`: that way the h1 titles the whole page (otherwise outline tools show "Untitled BODY") and the sections fall under it.
+- Nesting order: `<section>` (with an h2) > `<article>` (with an h3) > `<div>` for layout. Heading outline, set by Tuur:
+  ```
+  H1 Bakkerij Gevaert, uw warme bakker sinds 1931
+    section#welkom-knoppen   H2 Welkom bij Jan en Severine
+                             H3 Bel om te bestellen, H3 Openingsuren (the two hero buttons, each link inside an <h3 class="flex">)
+    section#ambachtelijk     H2 Vers. Warm. Ambachtelijk.
+      article#over-ons       H3 Over ons
+      article#assortiment    H3 Onze bakkerij op beeld (gallery)
+    section#bestellen        H2 Bestel hier
+    section#bezoek           H2 Praktisch
+      article                H3 Openingsuren
+      article.grid           H3 Adres
+  ```
+- Where the outline text is not visible in the design, the heading is `sr-only` (h2 "Welkom bij Jan en Severine", "Vers. Warm. Ambachtelijk.", "Bestel hier", "Praktisch"; h3 "Onze bakkerij op beeld", "Adres"). The visible big titles that are not headings are `<p>` with the same classes: "Welkom bij Jan en Severine" (in Over ons), "Iets speciaals nodig? bel ons even", and "Vers. Warm. Ambachtelijk." (this one `aria-hidden="true"`, it duplicates the sr-only h2). Visible headings: h3 "Over ons" (the small label) and h3 "Openingsuren". "Bezoek ons" stays a `<p>`.
+- The sr-only h2 of a section comes first in its DOM, before its articles, so the outline is correct even where the visible title sits lower in the layout.
+- Each `<section>` and `<article>` has `aria-labelledby` pointing to its own heading (ids end in `-titel`). Anchor links such as `#bezoek` rely on the section ids.
 - Gallery: scroll container `<div id="galerij" role="region" aria-label="Fotogalerij" tabindex="0">` containing `<ul class="flex w-max ...">` with each photo in `<li class="flex shrink-0">`. Arrow buttons have `aria-label` and `aria-controls="galerij"`. New photos go in a new `<li>`.
 - Opening hours table: `<caption class="sr-only">`, days are `<th scope="row">`, hours in `<time datetime="06:30">`.
 - Address and phone are in `<address>` (the whole address card, and the footer line), with `not-italic`.
 - Decorative images (Visser in section 4, Visser in the banner) have `alt=""`; content photos keep a descriptive alt.
 - Phone links are always `tel:+3250511268`. A link whose text is not the number gets an `aria-label` that says it calls (e.g. "Bestel hier: bel 050 51 12 68"). Icons inside buttons/links have `aria-hidden="true"`.
 - Structured data: `<script type="application/ld+json">` in `<head>` with schema.org `Bakery` (name, address, phone, url, foundingDate, openingHoursSpecification). Hours appear there too, so they now live in three places: table, `OPEN_DAGEN`, JSON-LD. Keep all three in sync. The `url` is a placeholder (TODO): replace with the final domain.
+- Changes to this structure must not change the visual design: wrappers get classes (`flex`, `grid`) only where needed to keep the layout identical. Check with screenshots before/after.
 - Validate with `npx html-validate index.html` (must pass with 0 errors). The few `html-validate-disable-next` comments in the HTML are deliberate and carry their reason; do not remove them without solving the reason.
 
 ## Practical info
@@ -97,7 +113,6 @@ The owners (Jan and Severine) are not technical and must be able to set a holida
 - Do not use photos where customers are recognizable.
 
 ## Open items
-- Replace Alegreya with Adonis via Adobe Fonts.
 - Responsive images (`srcset`), meta/Open Graph tags + share image, full favicon set.
 - Hosting: static (Netlify, Cloudflare Pages, GitHub Pages or the hosting of their domain).
 - Replace the placeholder `url` in the JSON-LD (`https://gevaert-website.vercel.app/`) with the final domain.
